@@ -35,6 +35,7 @@ class _MyApp extends State<MyApp> {
         ),
         body: pageOption[selectedPage],
         bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: const Color.fromARGB(255, 78, 154, 255),
           currentIndex: selectedPage,
           onTap: (int index) {
             setState(() {

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CustomFormField extends StatelessWidget {
-  const CustomFormField({super.key, required this.label, required this.type});
+  const CustomFormField(
+      {super.key,
+      required this.label,
+      required this.type,
+      required this.controller});
 
   final String label;
   final String type;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +34,7 @@ class CustomFormField extends StatelessWidget {
     return Column(
       children: [
         TextFormField(
+            controller: controller,
             decoration: InputDecoration(
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
