@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:identification_mobile/widgets/customform_field.dart';
+import 'package:identification_mobile/widgets/customdropdownform_field.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,8 +13,10 @@ class Home extends StatefulWidget {
 
 class _Home extends State<Home> {
   final _identificationNumberController = TextEditingController();
-  final _nameController = TextEditingController();
-  final _surenameController = TextEditingController();
+  String _titleThaiController = '';
+  String _titleEngController = '';
+  final _nameThaiController = TextEditingController();
+  final _surenameThaiController = TextEditingController();
 
   String userPost = '';
 
@@ -29,21 +32,45 @@ class _Home extends State<Home> {
               type: 'number',
               controller: _identificationNumberController,
             ),
+            CustomDropdownFormField(
+                itemList: const ['นาย', 'นาง', 'นางสาว'],
+                controller: _titleThaiController,
+                onChange: (value) {
+                  if (value != null) {
+                    setState(
+                      () {
+                        _titleThaiController = value;
+                      },
+                    );
+                  }
+                }),
             CustomFormField(
-              label: 'Name',
+              label: 'ชื่อ',
               type: 'text',
-              controller: _nameController,
+              controller: _nameThaiController,
             ),
             CustomFormField(
-              label: 'Surename',
+              label: 'นามสกุล',
               type: 'text',
-              controller: _surenameController,
+              controller: _surenameThaiController,
             ),
+            CustomDropdownFormField(
+                itemList: const ['Mr.', 'Mrs.', 'Miss'],
+                controller: _titleEngController,
+                onChange: (value) {
+                  if (value != null) {
+                    setState(
+                      () {
+                        _titleEngController = value;
+                      },
+                    );
+                  }
+                }),
             MaterialButton(
               onPressed: () {
                 setState(() {
                   userPost =
-                      '{id : ${_identificationNumberController.text}, name : ${_nameController.text}, surename : ${_surenameController.text}}';
+                      '{id : ${_identificationNumberController.text}, name : ${_nameThaiController.text}, surename : ${_surenameThaiController.text}}, title_thai : $_titleThaiController';
                 });
               },
               color: const Color.fromARGB(255, 78, 154, 255),
