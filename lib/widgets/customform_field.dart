@@ -36,11 +36,16 @@ class CustomFormField extends StatelessWidget {
         TextFormField(
             controller: controller,
             decoration: InputDecoration(
-              contentPadding:
-                  const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              border: const OutlineInputBorder(),
-              labelText: label,
-            ),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                border: const OutlineInputBorder(),
+                labelText: label,
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    controller.clear();
+                  },
+                  icon: const Icon(Icons.clear),
+                )),
             keyboardType: keyboardType),
         const SizedBox(
           height: 10,
