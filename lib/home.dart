@@ -25,29 +25,37 @@ class _Home extends State<Home> {
     return Form(
       child: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
+        child: ListView(
           children: [
             CustomFormField(
               label: 'Identification Number',
               type: 'number',
               controller: _identificationNumberController,
             ),
-            CustomDropdownFormField(
-                itemList: const ['นาย', 'นาง', 'นางสาว'],
-                controller: _titleThaiController,
-                onChange: (value) {
-                  if (value != null) {
-                    setState(
-                      () {
-                        _titleThaiController = value;
-                      },
-                    );
-                  }
-                }),
-            CustomFormField(
-              label: 'ชื่อ',
-              type: 'text',
-              controller: _nameThaiController,
+            Row(
+              children: [
+                CustomDropdownFormField(
+                  itemList: const ['นาย', 'นาง', 'นางสาว'],
+                  hint: 'คำนำหน้า',
+                  controller: _titleThaiController,
+                  onChange: (value) {
+                    if (value != null) {
+                      setState(
+                        () {
+                          _titleThaiController = value;
+                        },
+                      );
+                    }
+                  },
+                ),
+                Expanded(
+                  child: CustomFormField(
+                    label: 'ชื่อ',
+                    type: 'text',
+                    controller: _nameThaiController,
+                  ),
+                )
+              ],
             ),
             CustomFormField(
               label: 'นามสกุล',
@@ -56,6 +64,7 @@ class _Home extends State<Home> {
             ),
             CustomDropdownFormField(
                 itemList: const ['Mr.', 'Mrs.', 'Miss'],
+                hint: 'Title',
                 controller: _titleEngController,
                 onChange: (value) {
                   if (value != null) {
